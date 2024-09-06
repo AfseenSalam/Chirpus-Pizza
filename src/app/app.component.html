@@ -1,0 +1,36 @@
+<div class = "menu">
+<h2>Welcome to {{title}}</h2>
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Category</th>
+    <th>Price</th>
+    <th>Vegetarian?</th>
+    <th></th>
+      </tr>
+      @for(m of allMenu;track $index){
+        <tr [class.soldOut]="m.soldOut == true">
+          <td>{{m.name}}@if(m.soldOut){
+            (sold Out)
+          }</td>
+          
+          <td>{{m.category}}</td>
+          <td>{{m.price}}</td>
+          @if(m.vegetarian){
+            <td>Vegetarian</td>
+
+          }@else {
+            <td></td>
+         
+          }
+          
+          <td><button (click)="CurrentTotal(m)"[disabled]="m.soldOut">Add to Order</button></td>
+        </tr>
+
+      }
+</table>
+<div>
+  <h3>Current Total : {{total.toFixed(2)}}</h3>
+  <button (click)="ResetPressed()" >Reset</button>
+</div>
+</div>
